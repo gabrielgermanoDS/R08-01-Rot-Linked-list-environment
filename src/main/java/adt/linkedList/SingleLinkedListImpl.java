@@ -45,6 +45,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public void insert(T element) {
 
+		if (element == null) {
+			return;
+		}
+
 		SingleLinkedListNode<T> auxHead = head;
 		
 		if (head.isNIL()) {
@@ -68,6 +72,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
+
+		if (element == null) {
+			return;
+		}
 
 		if (isEmpty()) {
 			return;

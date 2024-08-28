@@ -41,6 +41,11 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void insert(T element) {
+
+		if (element == null) {
+			return;
+		}
+
 		if (isEmpty()) {
 			data = element;
 			next = new RecursiveSingleLinkedListImpl<>();
@@ -51,6 +56,11 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
+
+		if (element == null) {
+			return;
+		}
+		
 		if (isEmpty()) {
 
 		} else {

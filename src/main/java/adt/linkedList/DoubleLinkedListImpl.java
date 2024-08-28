@@ -12,6 +12,11 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void insert(T element) {
+
+		if (element == null) {
+			return;
+		}
+
 		DoubleLinkedListNode<T> auxLast = new DoubleLinkedListNode<>();
 		auxLast.setData(element);
 		auxLast.setPrevious(last);
@@ -45,14 +50,50 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeFirst() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!head.isNIL()) {
+			head = head.getNext();
+			if (head.isNIL()) {
+				last = (DoubleLinkedListNode<T>) head;
+			} else {
+				((DoubleLinkedListNode<T>) head).setPrevious(new DoubleLinkedListNode<T>());
+			}
+		}
 	}
 
 	@Override
 	public void removeLast() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!last.isNIL()) {
+			last = last.getPrevious();
+
+			if (last.isNIL()) {
+				head = last;
+			} else {
+				last.setNext(new DoubleLinkedListNode<T>());
+			}
+		}
+	}
+
+	@Override
+	public void remove(T element) {
+
+		if (element == null) {
+			return;
+		}
+
+		if (head.getData().equals(element)) {
+			removeFirst();
+		} else {
+			DoubleLinkedListNode<T> auxHead = (DoubleLinkedListNode<T>) head;
+
+			while (!auxHead.isNIL() && !auxHead.getData().equals(element)) {
+				auxHead = (DoubleLinkedListNode<T>) auxHead.getNext();
+			}
+
+			if (!auxHead.isNIL()) {
+				((DoubleLinkedListNode<T>) auxHead.getNext()).setPrevious(auxHead.getPrevious());
+				auxHead.getPrevious().setNext(auxHead.getNext());
+			}
+		}
 	}
 
 
