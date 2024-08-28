@@ -40,6 +40,12 @@ public class StudentLinkedListTest {
 	}
 
 	@Test
+	public void testSize2() {
+		lista1.insert(4);
+		Assert.assertEquals(4, lista1.size());
+	}
+
+	@Test
 	public void testSearch() {
 		Assert.assertTrue(2 == lista1.search(2));
 		Assert.assertNull(lista1.search(4));

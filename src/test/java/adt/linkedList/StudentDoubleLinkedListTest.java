@@ -1,5 +1,7 @@
 package adt.linkedList;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +40,37 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	}
 
 	@Test
+	public void testInsert() {
+		((DoubleLinkedList<Integer>) lista1).insert(4);
+		Integer data = ((DoubleLinkedListImpl<Integer>) lista1).getLast().getData();
+		assertEquals( new Integer(4), data);
+	}
+
+	@Test
+	public void testInsertFirst2() {
+		((DoubleLinkedList<Integer>) lista1).insertFirst(4);
+		Integer data = ((DoubleLinkedListImpl<Integer>) lista1).getHead().getData();
+		assertEquals( new Integer(4), data);
+	}
+
+	@Test
+	public void testInsertFirst3() {
+		((DoubleLinkedList<Integer>) lista1).insertFirst(4);
+		Integer data = ((DoubleLinkedListImpl<Integer>) lista1).getHead().getNext().getNext().getData();
+		assertEquals( new Integer(2), data);
+	}
+
+	@Test
+	public void testToArray() {
+		Assert.assertArrayEquals(new Integer[] {3, 2, 1}, lista1.toArray());
+	}
+
+	@Test
+	public void testToArray2() {
+		Assert.assertArrayEquals(new Integer[] {1}, lista3.toArray());
+	}
+
+	@Test
 	public void testRemoveFirst() {
 		((DoubleLinkedList<Integer>) lista1).removeFirst();
 		Assert.assertArrayEquals(new Integer[] { 2, 1 }, lista1.toArray());
@@ -47,5 +80,18 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	public void testRemoveLast() {
 		((DoubleLinkedList<Integer>) lista1).removeLast();
 		Assert.assertArrayEquals(new Integer[] { 3, 2 }, lista1.toArray());
+	}
+
+	@Test
+	public void testSize() {
+		int size = ((DoubleLinkedList<Integer>) lista1).size();
+		assertEquals(3, size);
+	}
+
+	@Test
+	public void testSize2() {
+		((DoubleLinkedList<Integer>) lista1).insertFirst(4);
+		int size = ((DoubleLinkedList<Integer>) lista1).size();
+		assertEquals(4, size);
 	}
 }
